@@ -103,6 +103,7 @@
     <string name="hide_low_play_count_recommend_title">隐藏低播放量视频</string>
     <string name="hide_low_play_count_recommend_summary">隐藏低于指定播放量的视频</string>
     <string name="hide_top_entrance_popular_summary">隐藏热门的顶栏(排行榜等)</string>
+    <string name="hide_topic_list_popular_summary">隐藏热门的话题</string>
     <string name="hide_suggest_follow_popular_summary">隐藏热门的推荐关注(及其视频)</string>
     <string name="add_bangumi_title">添加其他地区番剧</string>
     <string name="add_bangumi_summary">在首页标签添加大陆/港澳台番剧分页</string>
@@ -305,4 +306,9 @@
     <string name="auto_dark_splash_summary">防瞎眼</string>
     <string name="no_live_mask_title">隐藏直播模糊遮罩</string>
     <string name="no_live_mask_summary">隐藏部分直播的模糊遮罩</string>
+    <string name="skip_reward_ad_title">跳过视频激励广告</string>
+    <string name="skip_reward_ad_summary">有了这个，终于能过第二关了😋（需重启两次哔哩哔哩）</string>
+    <string name="purify_story_video_ad_title">净化竖屏模式广告/推广</string>
+    <string name="purify_story_video_ad_summary">有了这个，连第一关都看不到了😭</string>
+    <string name="long_press_speed">长按播放速度设置</string>
 </resources>

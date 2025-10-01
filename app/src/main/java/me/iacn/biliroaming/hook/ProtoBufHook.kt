@@ -31,10 +31,7 @@ class ProtoBufHook(classLoader: ClassLoader) : BaseHook(classLoader) {
     // 以下为隐藏功能配置
     private val hidden = sPrefs.getBoolean("hidden", false)
 
-    private val blockFollowButton = hidden && sPrefs.getStringSet("block_follow_button", null).orEmpty()
-    private val hideFollowButton = hidden && sPrefs.getBoolean("hide_follow_button", false)
-    private val removeRelatePromote = hidden && sPrefs.getBoolean("remove_video_relate_promote", false)
-    private val removeRelateOnlyAv = hidden && sPrefs.getBoolean("remove_video_relate_only_av", false)
+    private val blockFollowButton = sPrefs.getStringSet("block_follow_button", null).orEmpty()
     private val removeHonor = hidden && sPrefs.getBoolean("remove_video_honor", false)
     private val removeUgcSeason = hidden && sPrefs.getBoolean("remove_video_UgcSeason", false)
     private val removeCmdDms = hidden && sPrefs.getBoolean("remove_video_cmd_dms", false)
@@ -164,7 +161,7 @@ class ProtoBufHook(classLoader: ClassLoader) : BaseHook(classLoader) {
                 }
             }
         }
-        if (blockFollowButton.isNotEmpty()) {
+        if (hidden && blockFollowButton.isNotEmpty()) {
             if (blockFollowButton.contains("comment"))
                 "com.bapis.bilibili.main.community.reply.v1.ReplyControl".from(mClassLoader)
                     ?.replaceMethod("getShowFollowBtn") { false }
@@ -419,7 +416,11 @@ class ProtoBufHook(classLoader: ClassLoader) : BaseHook(classLoader) {
             ?.callMethodAs("getAid") ?: -1L
         val like = viewReply.callMethod("getReqUser")
             ?.callMethodAs("getLike") ?: -1
-        AutoLikeHook.detail = aid to like
+
+        if (aid > 0 && like != -1) {
+            AutoLikeHook.detail = aid to like
+        }
+
         BangumiPlayUrlHook.qnApplied.set(false)
 
         // 视频详情页荣誉卡片

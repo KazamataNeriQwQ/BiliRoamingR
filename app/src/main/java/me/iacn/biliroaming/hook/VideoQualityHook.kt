@@ -1,6 +1,7 @@
-package me.iacn.biliroaming.hook
+package me.iacn.biliroaming.hookTrialVipQualityHook
 
 import me.iacn.biliroaming.BiliBiliPackage.Companion.instance
+import me.iacn.biliroaming.hook.BaseHook
 import me.iacn.biliroaming.utils.*
 
 class VideoQualityHook(classLoader: ClassLoader) : BaseHook(classLoader) {

@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.future.future
 import me.iacn.biliroaming.hook.*
+import me.iacn.biliroaming.hookTrialVipQualityHook.VideoQualityHook
 import me.iacn.biliroaming.utils.*
 import java.util.concurrent.CompletableFuture
 
@@ -64,7 +65,7 @@ class XposedInit : IXposedHookLoadPackage, IXposedHookZygoteInit {
                                         !sPrefs.getString("cn_server", null).isNullOrEmpty())
                             ) ""
                             else "。\n但未启用番剧解锁功能，请检查解析服务器设置。"
-                        }"
+                        }\n请勿在B站任何地方宣传漫游。\n漫游插件开源免费，谨防被骗。"
                     )
 
                     country = MainScope().future(Dispatchers.IO) {
@@ -98,18 +99,9 @@ class XposedInit : IXposedHookLoadPackage, IXposedHookZygoteInit {
                     startHook(DrawerHook(lpparam.classLoader))
                     startHook(CoverHook(lpparam.classLoader))
                     startHook(SubtitleHook(lpparam.classLoader))
-                    startHook(SkinHook(lpparam.classLoader))
                     startHook(CopyHook(lpparam.classLoader))
                     startHook(LiveRoomHook(lpparam.classLoader))
-                    //startHook(QualityHook(lpparam.classLoader))
-                    startHook(SubtitleDownloadHook(lpparam.classLoader))
-                    startHook(ChannelTabUIHook(lpparam.classLoader))
-                    startHook(FavFolderDialogHook(lpparam.classLoader))
-                    startHook(PlaybackSpeedHook(lpparam.classLoader))
-                    startHook(TextFoldHook(lpparam.classLoader))
-                    startHook(ScreenOrientationHook(lpparam.classLoader))
-                    startHook(LosslessSettingHook(lpparam.classLoader))
-                    startHook(TrialVipQualityHook(lpparam.classLoader))
+                    startHook(QualityHook(lpparam.classLoader))
                     startHook(DynamicHook(lpparam.classLoader))
                     startHook(ProtoBufHook(lpparam.classLoader))
                     startHook(PlayArcConfHook(lpparam.classLoader))
@@ -132,6 +124,18 @@ class XposedInit : IXposedHookLoadPackage, IXposedHookZygoteInit {
                     startHook(SpeedHook(lpparam.classLoader))
                     startHook(MultiWindowHook(lpparam.classLoader))
                     startHook(LiveQualityHook(lpparam.classLoader))
+
+                    // Plus
+                    startHook(ChannelTabUIHook(lpparam.classLoader))
+                    startHook(FavFolderDialogHook(lpparam.classLoader))
+                    startHook(LongPressSpeed(lpparam.classLoader))
+                    startHook(LosslessSettingHook(lpparam.classLoader))
+                    startHook(PlaybackSpeedHook(lpparam.classLoader))
+                    startHook(RewardAdHook(lpparam.classLoader))
+                    startHook(ScreenOrientationHook(lpparam.classLoader))
+                    startHook(SkinHook(lpparam.classLoader))
+                    startHook(StoryPlayerAdHook(lpparam.classLoader))
+                    startHook(TrialVipQualityHook(lpparam.classLoader))
                 }
 
                 lpparam.processName.endsWith(":web") -> {
